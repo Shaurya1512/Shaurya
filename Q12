@@ -1,0 +1,20 @@
+# Intro To Arguments
+This challenge involved using the tilde (~) character as a shorthand to create a valid file path that meets specific length and location constraints.
+## My Solve
+Flag: pwn.college{kFZXcG8hLxVYbKdngT5sV-dkcGl.QXzMDO0wCM3AzNzEzW}
+
+This challenge required invoking a program by providing its path on the command line. In this case, we'll be giving the exact path, starting from /, so the path would be /pwn.
+This style of path, one that starts with the root directory, is referred to as an "absolute path".
+
+```
+hacker@paths~home-sweet-home:~$ /challenge/run ~/a
+Writing the file to /home/hacker/a!
+... and reading it back to you:
+pwn.college{kFZXcG8hLxVYbKdngT5sV-dkcGl.QXzMDO0wCM3AzNzEzW}
+```
+
+## What I Learned
+Through this task, I understood that the filesystem starts at /. Under that, there is a whole mess of other directories, configuration files, and programs. We can invoke the /filename which would give the conents of it.
+
+## References
+None
