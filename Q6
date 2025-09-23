@@ -1,0 +1,25 @@
+# Intro To Arguments
+The challenge asks you to change the directory using 'cd' command.
+## My Solve
+Flag: pwn.college{I4asR9rjwGx3eyHhr7YwD76mp6I.QX2QTN0wCM3AzNzEzW}
+
+This challenge required invoking a program by first changing the directory using 'cd' and then opening the specific file by providing its path on the command line.
+
+```
+hacker@paths~position-thy-self:~$ /challenge/run
+Incorrect...
+You are not currently in the /sys/kernel directory.
+Please use the `cd` utility to change directory appropriately.
+hacker@paths~position-thy-self:~$ cd /sys/kernel
+hacker@paths~position-thy-self:/sys/kernel$ /challenge/run
+Correct!!!
+/challenge/run is an absolute path, invoked from the right directory!
+Here is your flag:
+pwn.college{I4asR9rjwGx3eyHhr7YwD76mp6I.QX2QTN0wCM3AzNzEzW}
+```
+
+## What I Learned
+Through this task, I understood that the Linux filesystem has tons of directories with tons of files. You can navigate around directories by using the 'cd' (change directory) command and passing a path to it as an argument.
+
+## References
+None
