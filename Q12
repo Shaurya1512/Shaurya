@@ -3,8 +3,7 @@ This challenge involved using the tilde (~) character as a shorthand to create a
 ## My Solve
 Flag: pwn.college{kFZXcG8hLxVYbKdngT5sV-dkcGl.QXzMDO0wCM3AzNzEzW}
 
-This challenge required invoking a program by providing its path on the command line. In this case, we'll be giving the exact path, starting from /, so the path would be /pwn.
-This style of path, one that starts with the root directory, is referred to as an "absolute path".
+I constructed the argument ~/a. This argument is exactly three characters long. Run '/challenge/run ~/a', to have the flag written to the file named a inside my home directory.
 
 ```
 hacker@paths~home-sweet-home:~$ /challenge/run ~/a
@@ -14,7 +13,7 @@ pwn.college{kFZXcG8hLxVYbKdngT5sV-dkcGl.QXzMDO0wCM3AzNzEzW}
 ```
 
 ## What I Learned
-Through this task, I understood that the filesystem starts at /. Under that, there is a whole mess of other directories, configuration files, and programs. We can invoke the /filename which would give the conents of it.
+Through this task, I understood that the utility of the tilde (~) is a powerful shortcut for the home directory. I learned that this is a shell feature called tilde expansion, which happens before the command is executed. This means the program itself sees the full, absolute path, even though I typed a short, convenient argument.
 
 ## References
 None
