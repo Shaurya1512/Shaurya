@@ -1,0 +1,20 @@
+# Intro To Arguments
+This challenge introduces the concept of using '.' a dot, in relative paths to explicitly refer to the current directory.
+## My Solve
+Flag: pwn.college{QlYxjvnCPe1qlJjt8rg1NZ2Yt0n.QXwUTN0wCM3AzNzEzW}
+
+I first changed my location to the root directory by typing cd /. From there, I needed to run the executable located at /challenge/run. Instead of just typing challenge/run, I used the more explicit relative path ./challenge/run. This command tells the shell: "Starting from the current directory (.), go into the challenge directory and execute the file named run." This approach worked and printed the flag.
+
+```
+hacker@paths~explicit-relative-paths-from-:~$ cd /
+hacker@paths~explicit-relative-paths-from-:/$ ./challenge/run
+Correct!!!
+./challenge/run is a relative path, invoked from the right directory!
+Here is your flag:
+pwn.college{QlYxjvnCPe1qlJjt8rg1NZ2Yt0n.QXwUTN0wCM3AzNzEzW}
+```
+
+## What I Learned
+Through this task, I understood that there is a shorthand for the current working directory. Using './' at the beginning of a path is a common and explicit way to tell the shell to look for a file or directory starting from the current location.
+## References
+None
