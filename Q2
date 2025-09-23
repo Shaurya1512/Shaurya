@@ -1,0 +1,22 @@
+# Intro To Arguments
+The challenge asks you to invoke the 'echo' and 'hello' commands with different arguments to obtain respective results.
+## My Solve
+Flag: pwn.college{8yVf40kJCDaZBu31EvwbUtRcKrK.QX4YjM1wCMxAzNzEzW}
+
+This challenge required providing specific arguments to programs in the terminal. I first used the echo command to understand how arguments work. Running echo Hello passes one argument and prints "Hello", while echo Hello Hackers! passes two arguments and prints both. Based on this understanding, I ran the hello program with hackers as its argument. This was the correct input to solve the challenge and retrieve the flag.
+
+```
+hacker@hello~intro-to-arguments:~$ echo Hello
+Hello
+hacker@hello~intro-to-arguments:~$ echo Hello Hackers!
+Hello Hackers!
+hacker@hello~intro-to-arguments:~$ hello hackers
+Success! Here is your flag:
+pwn.college{8yVf40kJCDaZBu31EvwbUtRcKrK.QX4YjM1wCMxAzNzEzW}
+```
+
+## What I Learned
+Through this task, I understood that Linux programs can accept a variable number of command-line arguments and that these inputs directly influence the program's output.
+
+## References
+None
