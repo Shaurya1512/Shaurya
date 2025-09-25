@@ -20,7 +20,7 @@ I learned that the whoami command shows the current username.
 None.
 
 
-# Intro To Arguments
+# Intro To Commands
 The challenge asks you to invoke the 'echo' and 'hello' commands with different arguments to obtain respective results.
 ## My Solve
 Flag: pwn.college{8yVf40kJCDaZBu31EvwbUtRcKrK.QX4YjM1wCMxAzNzEzW}
@@ -43,7 +43,7 @@ Through this task, I understood that Linux programs can accept a variable number
 ## References
 None
 
-# Intro To Arguments
+# Intro To Terminal History
 The challenge asks you to use the up and down arrow keys to get the history of the terminal.
 ## My Solve
 Flag: pwn.college{0zGI9SFGGu9QTRPtcUAWK0AE7sv.0lNzEzNxwCM3AzNzEzW}
