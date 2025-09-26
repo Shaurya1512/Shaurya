@@ -186,16 +186,21 @@ None
 # Intro To 'ls -a'
 This challenge introduces the concept of hidden "dotfiles" in Linux and the use of the -a flag with ls to reveal them. 
 ## My Solve
-Flag: pwn.college{kFZXcG8hLxVYbKdngT5sV-dkcGl.QXzMDO0wCM3AzNzEzW}
+Flag: pwn.college{UqOO5FMuImPnUBFzaoL2WGn6D0E.QXwUDO0wCM3AzNzEzW}
 
 The task was to find a flag that was hidden in the root directory (/). Files in Linux that begin with a dot (.) are hidden by default from the ls command. To find the flag, I used ls -a /. The -a (all) flag instructed ls to list every file, including the hidden dotfile containing the flag. Once its name was revealed, I used cat to read its contents.
 
 ```
-
+hacker@commands~hidden-files:~$ cd /
+hacker@commands~hidden-files:/$ ls -a
+.   .dockerenv             bin   challenge  etc   lib    lib64   media  nix  proc  run   srv  tmp  var
+..  .flag-241701655913545  boot  dev        home  lib32  libx32  mnt    opt  root  sbin  sys  usr
+hacker@commands~hidden-files:/$ cat .flag-241701655913545
+pwn.college{UqOO5FMuImPnUBFzaoL2WGn6D0E.QXwUDO0wCM3AzNzEzW}
 ```
 
 ## What I Learned
-I learned that Linux uses a simple convention for hidden files: any file or directory starting with a . is considered hidden. These "dotfiles" are often used to store user-specific configuration and settings to avoid cluttering the home directory. The key takeaway is that the -a flag with ls is essential for viewing a complete listing of a directory's contents.
+I learned that Linux uses a simple convention for hidden files: any file or directory starting with a . is considered hidden. The key takeaway is that the -a flag with ls is essential for viewing a complete listing of a directory's contents.
 
 ## References
 None
@@ -292,22 +297,68 @@ None
 # Creating Directories with mkdir
 This challenge introduces the mkdir (make directory) command, which is used to create new directories in the filesystem. 
 ## My Solve
-Flag: pwn.college{Mkdir_M4k3s_D1r3ct0ri3s_!}
+Flag: pwn.college{gPZ8KuZYO5YpkNnFHqsBf9swmI8.QXxMDO0wCM3AzNzEzW}
 
-The task had two parts: first, create a directory named pwn inside the /tmp directory, and second, create a file named college inside that new /tmp/pwn directory. I used the mkdir command to create the directory and then the touch command with the full path to create the file inside it. Finally, I ran /challenge/run to verify my work and get the flag.
+The task had two parts: first, create a directory named pwn inside the /tmp directory, and second, create a file named college inside that new /tmp/pwn directory. I used the mkdir command to create the directory and then the cd commmand to get in the required directory, then touch command to create the file inside it. Finally, I ran /challenge/run to verify my work and get the flag.
 
 ```
-hacker@dojo:~$ mkdir /tmp/pwn
-
-hacker@dojo:~$ touch /tmp/pwn/college
-
-hacker@dojo:~$ /challenge/run
+hacker@commands~making-directories:~$ mkdir /tmp/pwn
+hacker@commands~making-directories:~$ cd /tmp/pwn
+hacker@commands~making-directories:/tmp/pwn$ touch college
+hacker@commands~making-directories:/tmp/pwn$ ls
+college
+hacker@commands~making-directories:/tmp/pwn$ /challenge/run
 Success! Here is your flag:
-pwn.college{Mkdir_M4k3s_D1r3ct0ri3s_!}
+pwn.college{gPZ8KuZYO5YpkNnFHqsBf9swmI8.QXxMDO0wCM3AzNzEzW}
 ```
 
 ## What I Learned
 I learned that mkdir is the fundamental command for creating new directories.
+
+## References
+None
+
+# Searching the Filesystem with find
+This challenge introduces the powerful find command, a utility for recursively searching for files and directories that match specific criteria. 
+## My Solve
+Flag: pwn.college{gYAosA0PmmV5f1d2QlqDYobLK26.QXyMDO0wCM3AzNzEzW}
+
+The task was to locate a file named flag hidden somewhere in the entire filesystem. I used the find command, telling it to start its search from the root directory (/) and to look for a file with the exact name flag using the -name parameter.
+The command produced several results and some "Permission denied" errors, which I ignored as instructed. I then used cat on each of the found paths until I located the file that contained the real flag.
+
+```
+hacker@commands~finding-files:~$ find / -name flag
+find: ‘/root’: Permission denied
+/etc/security/namespace.d/flag
+find: ‘/etc/ssl/private’: Permission denied
+find: ‘/tmp/tmp.4mK6TfTSUV’: Permission denied
+/usr/local/lib/python3.8/dist-packages/pwnlib/flag
+hacker@commands~finding-files:~$ cat /etc/security/namespace.d/flag
+pwn.college{gYAosA0PmmV5f1d2QlqDYobLK26.QXyMDO0wCM3AzNzEzW}
+```
+
+## What I Learned
+I learned that find is the command for locating files when you don't know where they are. I also learned that when running a search as a user, we can see "Permission denied" error for some directories.
+
+## References
+None
+
+# Intro To Linking Files
+This challenge introduces symbolic links (or symlinks), a powerful feature in Linux that acts as a pointer or shortcut to another file or directory. 🔗
+## My Solve
+Flag: pwn.college{8F67vkjgL_qJLQNO45XlshjPK-w.QX5ETN1wCM3AzNzEzW}
+
+I used the ln -s command to create a symbolic link. I made /home/hacker/not-the-flag a link that pointed to the real flag file. When I ran the executable, it tried to open the link, but the operating system automatically redirected it to the target (/flag), causing it to read and print the real flag's contents.
+
+```
+hacker@commands~linking-files:~$ ln -s /flag /home/hacker/not-the-flag
+hacker@commands~linking-files:~$ /challenge/catflag
+About to read out the /home/hacker/not-the-flag file!
+pwn.college{8F67vkjgL_qJLQNO45XlshjPK-w.QX5ETN1wCM3AzNzEzW}
+```
+
+## What I Learned
+I learned how to create symbolic links using the syntax ln -s TARGET LINK_NAME. The most important lesson was understanding their practical use for redirection. Symlinks are more than just shortcuts, they can be used to fool programs into reading from or writing to different locations than they were originally designed for. This is an extremely common and useful technique in system administration, development, and cybersecurity.
 
 ## References
 None
