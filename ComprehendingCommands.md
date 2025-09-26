@@ -358,7 +358,7 @@ pwn.college{8F67vkjgL_qJLQNO45XlshjPK-w.QX5ETN1wCM3AzNzEzW}
 ```
 
 ## What I Learned
-I learned how to create symbolic links using the syntax ln -s TARGET LINK_NAME. The most important lesson was understanding their practical use for redirection. Symlinks are more than just shortcuts, they can be used to fool programs into reading from or writing to different locations than they were originally designed for. This is an extremely common and useful technique in system administration, development, and cybersecurity.
+I learned how to create symbolic links using the syntax ln -s TARGET LINK_NAME. The most important lesson was understanding their practical use for redirection. 
 
 ## References
 None
